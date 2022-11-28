@@ -12,11 +12,8 @@ class MainActivity : AppCompatActivity() {
         if (isFragmentContainerEmpty) {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.rvLeaderboard, PhotoGalleryFragment.newInstance())
+                .add(R.id.fragmentContainer, LeaderboardFragment.newInstance())
                 .commit()
         }
-
     }
-
-
 }
