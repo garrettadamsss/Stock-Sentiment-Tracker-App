@@ -19,28 +19,30 @@ class LeaderboardFragment : Fragment() {
     //creates an instance of a stream of data from the RedditFetchr Repository
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val redditLiveData: LiveData<String> = RedditFetchr().fetchContents()
+        //redditLiveData comes from background thread in the repo
+        val redditLiveData: LiveData<List<StockItem>> = RedditFetchr().fetchContents()
+        //print stockItems
         redditLiveData.observe(
             this,
-            Observer { responseString ->
-                Log.d(TAG, "Response received: $responseString")
+            Observer { stockItems ->
+                Log.d(TAG, "Response received: $stockItems")
             })
     }
 
-    //sets up recycler view which asks adapter to create viewholders and bind data
-    private lateinit var leaderboardRecyclerView: RecyclerView
-    private var adapter: StockAdapter? = null
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val view = inflater.inflate(R.layout.fragment_leaderboard, container, false)
-        leaderboardRecyclerView = view.findViewById(R.id.leaderboard_recycler_view)
-        leaderboardRecyclerView.layoutManager = LinearLayoutManager(context)
-        updateUI()
-        return view
-    }
+//    //sets up recycler view which asks adapter to create viewholders and bind data
+//    private lateinit var leaderboardRecyclerView: RecyclerView
+//    private var adapter: StockAdapter? = null
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        val view = inflater.inflate(R.layout.fragment_leaderboard, container, false)
+//        leaderboardRecyclerView = view.findViewById(R.id.leaderboard_recycler_view)
+//        leaderboardRecyclerView.layoutManager = LinearLayoutManager(context)
+//        updateUI()
+//        return view
+//    }
 //    //sets up UI for LeaderBoardFragment
 //    private fun updateUI() {
 //        val stocks = crimeListViewModel.crimes
@@ -55,7 +57,7 @@ class LeaderboardFragment : Fragment() {
 //    }
 //    //Adapter inner class: creates viewholders and binds the data to viewholders
 //    //pass in the list of stocks to be presented
-//    private inner class StockAdapter(var stocks: List<Stock>) : RecyclerView.Adapter<StockHolder>() {
+//    private inner class StockAdapter(var stocks: List<StockItem>) : RecyclerView.Adapter<StockHolder>() {
 //
 //        //create viewholder
 //        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StockHolder {
