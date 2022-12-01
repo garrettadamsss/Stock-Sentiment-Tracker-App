@@ -26,10 +26,9 @@ class StockRepository private constructor(context: Context) {
     fun getStocks() : List<Stock> = stockDao.getStocks()
     fun getStock(ticker: String) : Stock? = stockDao.getStock(ticker)
     fun update(stock: Stock) {
-        stockDao.update(stock)
-//        executor.execute {
-//
-//        }
+        executor.execute {
+            stockDao.update(stock)
+        }
     }
 
     companion object {
