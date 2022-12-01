@@ -4,8 +4,9 @@ import com.cs4750.stocksentimenttracker.Children
 import com.cs4750.stocksentimenttracker.DataX
 import com.google.gson.annotations.SerializedName
 
-//maps to outermost object in JSON data and then maps to data key
-class RedditResponse {
-    @SerializedName("data")
-    lateinit var data: ChildrenResponse
+//maps to the Json children to children dataclass
+//2nd level
+class ChildrenResponse {
+    @SerializedName("children")
+    lateinit var children: List<Children>
 }

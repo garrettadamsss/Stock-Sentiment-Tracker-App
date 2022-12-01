@@ -2,15 +2,9 @@ package com.cs4750.stocksentimenttracker
 
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 
 private const val TAG = "LeaderboardFragment"
@@ -20,12 +14,12 @@ class LeaderboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //redditLiveData comes from background thread in the repo
-        val redditLiveData: LiveData<List<StockItem>> = RedditFetchr().fetchContents()
+        val redditLiveData: LiveData<List<Children>> = RedditFetchr().fetchContents()
         //print stockItems
         redditLiveData.observe(
             this,
-            Observer { stockItems ->
-                Log.d(TAG, "Response received: $stockItems")
+            Observer { commentItems ->
+                Log.d(TAG, "Response received: $commentItems")
             })
     }
 

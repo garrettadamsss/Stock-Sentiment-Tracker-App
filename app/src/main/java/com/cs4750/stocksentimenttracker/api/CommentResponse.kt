@@ -1,11 +1,12 @@
 package com.cs4750.stocksentimenttracker.api
 
-import com.cs4750.stocksentimenttracker.StockItem
+import com.cs4750.stocksentimenttracker.CommentItem
+import com.cs4750.stocksentimenttracker.DataX
 import com.google.gson.annotations.SerializedName
 
-//automatically maps JSON array "comments" to the list of Stock data class
-//inner object of JSON data
+//automatically maps JSON data to the Datax data class
+//3rd level
 class CommentResponse{
-    @SerializedName("comments")
-    lateinit var stockItems: List<StockItem>
+    @SerializedName("data")
+    lateinit var commentItems: List<DataX>
 }
