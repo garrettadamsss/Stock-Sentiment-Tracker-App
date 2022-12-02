@@ -12,6 +12,8 @@ private const val DATABASE_NAME = "stock-database"
 
 class StockRepository private constructor(context: Context) {
 
+    // constructor
+    // build database from asset
     private val database : StockDatabase = Room.databaseBuilder(
         context.applicationContext,
         StockDatabase::class.java,
@@ -23,14 +25,17 @@ class StockRepository private constructor(context: Context) {
     private val stockDao = database.stockDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    // methods
     fun getStocks() : List<Stock> = stockDao.getStocks()
-    fun getStock(ticker: String) : Stock? = stockDao.getStock(ticker)
+    fun getStock(ticker: String) : LiveData<Stock?> = stockDao.getStock(ticker)
+    fun getTopStocks() : List<Stock> = stockDao.getTopStocks()
     fun update(stock: Stock) {
         executor.execute {
             stockDao.update(stock)
         }
     }
 
+    // singleton init
     companion object {
         private var INSTANCE: StockRepository? = null
 
