@@ -40,6 +40,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val isFragmentContainerEmpty = savedInstanceState == null
+        if (isFragmentContainerEmpty) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragmentContainer, LeaderboardFragment.newInstance())
+                .commit()
+        }
         refreshButton = findViewById(R.id.refreshBtn)
         recyclerView = findViewById(R.id.recyclerview)
 
