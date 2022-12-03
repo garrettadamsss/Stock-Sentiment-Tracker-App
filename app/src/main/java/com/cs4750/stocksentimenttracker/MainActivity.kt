@@ -20,7 +20,10 @@ private val comments : List<String> = listOf(
     "TSLA",
     "TSLA",
     "TSLA",
-    "TSLA"
+    "TSLA",
+    "AAPL",
+    "AMD",
+    "NVDA"
 )
 
 class MainActivity : AppCompatActivity() {
