@@ -27,13 +27,15 @@ class StockRepository private constructor(context: Context) {
 
     // methods
     fun getStocks() : List<Stock> = stockDao.getStocks()
-    fun getStock(ticker: String) : LiveData<Stock?> = stockDao.getStock(ticker)
-    fun getTopStocks() : List<Stock> = stockDao.getTopStocks()
-    fun update(stock: Stock) {
-        executor.execute {
-            stockDao.update(stock)
-        }
-    }
+    fun getTopStocks() : LiveData<List<Stock>> = stockDao.getTopStocks()
+    fun incrementStock(ticker: String) = stockDao.incrementStock(ticker)
+
+//    fun getStock(ticker: String) : LiveData<Stock?> = stockDao.getStock(ticker)
+//    fun update(stock: Stock) {
+//        executor.execute {
+//            stockDao.update(stock)
+//        }
+//    }
 
     // singleton init
     companion object {

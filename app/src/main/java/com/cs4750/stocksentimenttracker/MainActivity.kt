@@ -2,71 +2,80 @@ package com.cs4750.stocksentimenttracker
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.room.Room
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.cs4750.stocksentimenttracker.database.Stock
-import com.cs4750.stocksentimenttracker.database.StockDatabase
 
-private lateinit var countText: TextView
-private lateinit var refButton: Button
+private val TAG = "MainActivity"
 
-private val commentList : List<String> = listOf(
-    "SPY is going up",
-    "AAPL is going down",
-    "AMD AMD AMD",
-    "buy TSLA",
-    "SPY",
-    "MSFT",
-    "GME"
+private val comments : List<String> = listOf(
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA",
+    "TSLA"
 )
 
 class MainActivity : AppCompatActivity() {
 
-    private var stockListViewModel = StockListViewModel()
+    private val stockListViewModel : StockListViewModel by lazy {
+        ViewModelProvider(this).get(StockListViewModel::class.java)
+    }
+
+    private lateinit var refreshButton: Button
+    private lateinit var recyclerView : RecyclerView
+    private var adapter = StockAdapter(emptyList())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        countText = findViewById(R.id.count_text)
-        refButton = findViewById(R.id.refresh)
+        refreshButton = findViewById(R.id.refreshBtn)
+        recyclerView = findViewById(R.id.recyclerview)
 
-        val leaderboard = stockListViewModel.leaderboard
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val stockList = stockListViewModel.stockList
-        for(comment in commentList) {
-            for(stock in stockList) {
-                val updatedStock = stock.copy(count = stock.count + 1)
-                if(comment.contains(stock.ticker + ' ')) {  // at the beginning
-                    stockListViewModel.updateStock(updatedStock)
-                }
-                else if(comment.contains(' ' + stock.ticker)) {  // at the end
-                    stockListViewModel.updateStock(updatedStock)
-                }
-                else if(comment.contains(' ' + stock.ticker + ' ')) {  // at the middle
-                    stockListViewModel.updateStock(updatedStock)
-                }
-                else if(comment == stock.ticker) {   // only contains ticker
-                    stockListViewModel.updateStock(updatedStock)
-                }
+        // observe the changes in the list of top stocks
+        stockListViewModel.topStocksLiveData.observe(
+            this, Observer {
+                updateUI(it)    // update with new top stocks (leaderboard)
             }
-        }
+        )
 
-        // for debugging purposes
-        var displaytext : String = ""
-        for(stuff in leaderboard) {
-            displaytext = displaytext + stuff.ticker + ' ' + stuff.count + '\n'
-        }
-        countText.text = displaytext
+        countMentions(comments)     // <-- List<String> from json will go here
     }
 
-    private fun refresh() {
-        refButton.setOnClickListener {
+    private fun updateUI(topStocks : List<Stock>) {
+        adapter = StockAdapter(topStocks)
+        recyclerView.adapter = adapter
+    }
 
+    private fun countMentions(commentList: List<String>) {
+        refreshButton.setOnClickListener {
+            val stockList = stockListViewModel.stockList
+            for(comment in commentList) {
+                for(stock in stockList) {
+                    if(comment.contains(stock.ticker + ' ')) {  // at the beginning
+                        stockListViewModel.incrementStock(stock.ticker)
+                    }
+                    else if(comment.contains(' ' + stock.ticker)) {  // at the end
+                        stockListViewModel.incrementStock(stock.ticker)
+                    }
+                    else if(comment.contains(' ' + stock.ticker + ' ')) {  // at the middle
+                        stockListViewModel.incrementStock(stock.ticker)
+                    }
+                    else if(comment == stock.ticker) {   // only contains ticker
+                        stockListViewModel.incrementStock(stock.ticker)
+                    }
+                }
+            }
         }
     }
 
