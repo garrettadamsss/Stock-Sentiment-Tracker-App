@@ -1,9 +1,13 @@
 package com.cs4750.stocksentimenttracker.api
 
-import okhttp3.Call
+import com.cs4750.stocksentimenttracker.Children
+import retrofit2.Call
 import retrofit2.http.GET
 
+
 interface RedditApi {
-    @GET("/")
-    fun fetchContents(): Call<String>
+    @GET("/r/wallstreetbets/comments/.json")
+    //return redditresponse model object which deserializes the JSON data to a Model Object
+    fun fetchContents(): Call<RedditResponse>
+
 }
