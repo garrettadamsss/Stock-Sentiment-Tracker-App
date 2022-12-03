@@ -11,12 +11,12 @@ class StockListViewModel : ViewModel() {
         StockItemLiveData = RedditFetchr().fetchContents()
     }
 
-//    private val stockRepository = StockRepository.get()
-//    val stockList = stockRepository.getStocks()
-//
-//    val topStocksLiveData = stockRepository.getTopStocks()
-//
-//    fun incrementStock(ticker: String) {
-//        stockRepository.incrementStock(ticker)
-//    }
+    private val stockRepository = StockRepository.get()
+    val stockList = stockRepository.getStocks()
+
+    val topStocksLiveData = stockRepository.getTopStocks()
+
+    fun incrementStock(ticker: String) {
+        stockRepository.incrementStock(ticker)
+    }
 }
