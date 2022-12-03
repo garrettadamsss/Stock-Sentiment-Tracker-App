@@ -59,9 +59,9 @@ class RedditFetchr {
 //        })
 //        return responseLiveData
 //    }
-    fun fetchContents(): LiveData<List<Children>> {
+    fun fetchContents(): LiveData<List<DataX>> {
         //LiveData is a communication to Fragments from the repo
-        val responseLiveData: MutableLiveData<List<Children>> = MutableLiveData()
+        val responseLiveData: MutableLiveData<List<DataX>> = MutableLiveData()
         //make request
         val redditRequest: Call<RedditResponse> = redditApi.fetchContents()
         //run in background thread
@@ -79,17 +79,15 @@ class RedditFetchr {
                 //get list of children
                 val childrenResponse: ChildrenResponse? = redditResponse?.data
 
-
-//                //get list of data within children
-//                val commentResponse: CommentResponse? = childrenResponse?.children
-                //get comments list from commentResponse
-//                var commentItems: List<DataX> = commentResponse?.commentItems
-//                    ?: mutableListOf()
+                //get list of children from childrenresponse
                 var commentItems: List<Children> = childrenResponse?.children
                     ?: mutableListOf()
-//                var comments: List<DataX> = commentItems.DataX
+                val comments: MutableList<DataX> = mutableListOf()
+                commentItems.forEach {
+                    comments.add(it.data)
+                }
                 //set live data to list of stock items
-                responseLiveData.value = commentItems
+                responseLiveData.value = comments
             }
         })
         return responseLiveData

@@ -39,7 +39,7 @@ class LeaderboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //redditLiveData comes from background thread in the repo
-        val redditLiveData: LiveData<List<Children>> = RedditFetchr().fetchContents()
+        val redditLiveData: LiveData<List<DataX>> = RedditFetchr().fetchContents()
 
         stockListViewModel = ViewModelProviders.of(this).get(StockListViewModel::class.java)
 

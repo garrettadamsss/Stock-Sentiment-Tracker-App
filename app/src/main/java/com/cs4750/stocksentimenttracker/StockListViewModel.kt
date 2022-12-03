@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 
 class StockListViewModel : ViewModel() {
 
-    val StockItemLiveData: LiveData<List<Children>>
+    val StockItemLiveData: LiveData<List<DataX>>
 
     init {
         StockItemLiveData = RedditFetchr().fetchContents()
