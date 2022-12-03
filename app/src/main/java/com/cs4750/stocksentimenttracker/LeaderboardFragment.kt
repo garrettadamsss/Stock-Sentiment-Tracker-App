@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cs4750.stocksentimenttracker.database.Stock
 
 
 private const val TAG = "LeaderboardFragment"
@@ -39,11 +40,34 @@ class LeaderboardFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //redditLiveData comes from background thread in the repo
-        val redditLiveData: LiveData<List<DataX>> = RedditFetchr().fetchContents()
+        val redditLiveData: LiveData<List<String>> = RedditFetchr().fetchContents()
 
         stockListViewModel = ViewModelProviders.of(this).get(StockListViewModel::class.java)
 
+//        lateinit var refreshButton: Button
+//        fun countMentions(commentList: List<String>) {
+//            refreshButton.setOnClickListener {
+//                val stockList = stockListViewModel.stockList
+//                for(comment in commentList) {
+//                    for(stock in stockList) {
+//                        if(comment.contains(stock.ticker + ' ')) {  // at the beginning
+//                            stockListViewModel.incrementStock(stock.ticker)
+//                        }
+//                        else if(comment.contains(' ' + stock.ticker)) {  // at the end
+//                            stockListViewModel.incrementStock(stock.ticker)
+//                        }
+//                                else if(comment.contains(' ' + stock.ticker + ' ')) {  // at the middle
+//                            stockListViewModel.incrementStock(stock.ticker)
+//                        }
+//                        else if(comment == stock.ticker) {   // only contains ticker
+//                            stockListViewModel.incrementStock(stock.ticker)
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         stockListViewModel.StockItemLiveData.observe(
@@ -54,12 +78,16 @@ class LeaderboardFragment : Fragment() {
             })
     }
 
+
+
 //    private class StockHolder(itemTextView: TextView)
 //        : RecyclerView.ViewHolder(itemTextView) {
 //        val bindTitle: (CharSequence) -> Unit = itemTextView::setText
 //    }
 //
-//    private class StockAdapter(private val stockItems: List<Children>)
+
+
+//    private class StockAdapter(private val stockItems: List<Stock>)
 //        : RecyclerView.Adapter<StockHolder>() {
 //
 //        override fun onCreateViewHolder(

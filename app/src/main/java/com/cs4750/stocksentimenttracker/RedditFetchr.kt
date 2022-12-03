@@ -26,42 +26,10 @@ class RedditFetchr {
             .build()
         redditApi = retrofit.create(RedditApi::class.java)
     }
-    //calls thread to make request and recieves list of stock items
-//    fun fetchContents(): LiveData<List<CommentItem>> {
-//        //LiveData is a communication to Fragments from the repo
-//        val responseLiveData: MutableLiveData<List<CommentItem>> = MutableLiveData()
-//        //make request
-//        val redditRequest: Call<RedditResponse> = redditApi.fetchContents()
-//        //run in background thread
-//        redditRequest.enqueue(object : Callback<RedditResponse> {
-//            override fun onFailure(call: Call<RedditResponse>, t: Throwable) {
-//                Log.e(TAG, "Failed to fetch photos", t)
-//            }
-//            override fun onResponse(
-//                call: Call<RedditResponse>,
-//                response: Response<RedditResponse>
-//            ) {
-//                Log.d(TAG, "Response received")
-//                //get response of outermost JSON object
-//                val redditResponse: RedditResponse? = response.body()
-//                //get list of comments from redditResponse
-//                val commentResponse: CommentResponse? = redditResponse?.comments
-//                //get stock items list from commentResponse
-//                var commentItems: List<CommentItem> = commentResponse?.commentItems
-//                    ?: mutableListOf()
-//                //filters out null url response
-////                stockItems = stockItems.filterNot {
-////                    it.url.isBlank()
-////                }
-//                //set live data to list of stock items
-//                responseLiveData.value = commentItems
-//            }
-//        })
-//        return responseLiveData
-//    }
-    fun fetchContents(): LiveData<List<DataX>> {
+    //calls thread to make request and receives list of stock items
+    fun fetchContents(): LiveData<List<String>> {
         //LiveData is a communication to Fragments from the repo
-        val responseLiveData: MutableLiveData<List<DataX>> = MutableLiveData()
+        val responseLiveData: MutableLiveData<List<String>> = MutableLiveData()
         //make request
         val redditRequest: Call<RedditResponse> = redditApi.fetchContents()
         //run in background thread
@@ -80,11 +48,18 @@ class RedditFetchr {
                 val childrenResponse: ChildrenResponse? = redditResponse?.data
 
                 //get list of children from childrenresponse
-                var commentItems: List<Children> = childrenResponse?.children
+                var childrenItems: List<Children> = childrenResponse?.children
                     ?: mutableListOf()
-                val comments: MutableList<DataX> = mutableListOf()
-                commentItems.forEach {
-                    comments.add(it.data)
+                //create a list for dataX model objects
+                val DataXItems: MutableList<DataX> = mutableListOf()
+                //parse children list for datax
+                childrenItems.forEach {
+                    DataXItems.add(it.data)
+                }
+                //parse comments and extract body into Strings
+                val comments: MutableList<String> = mutableListOf()
+                DataXItems.forEach {
+                    comments.add(it.body)
                 }
                 //set live data to list of stock items
                 responseLiveData.value = comments
