@@ -5,9 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,28 +19,20 @@ import androidx.recyclerview.widget.RecyclerView
 private const val TAG = "LeaderboardFragment"
 class LeaderboardFragment : Fragment() {
 
+
     private lateinit var stockListViewModel: StockListViewModel
+    //sets up recycler view which asks adapter to create viewholders and bind data
     private lateinit var stockRecyclerView: RecyclerView
 
-    private lateinit var photoRecyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view = inflater.inflate(R.layout.fragment_leaderboard, container, false)
-        photoRecyclerView = view.findViewById(R.id.leaderboard_recycler_view)
-        photoRecyclerView.layoutManager = LinearLayoutManager(context)
+        stockRecyclerView = view.findViewById(R.id.leaderboard_recycler_view)
+        stockRecyclerView.layoutManager = LinearLayoutManager(context)
         return view
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        stockListViewModel.StockItemLiveData.observe(
-            viewLifecycleOwner,
-            Observer { galleryItems ->
-                Log.d(TAG, "Have gallery items from ViewModel $galleryItems")
-                // Eventually, update data backing the recycler view
-            })
     }
 
     //creates an instance of a stream of data from the RedditFetchr Repository
@@ -46,16 +41,43 @@ class LeaderboardFragment : Fragment() {
         //redditLiveData comes from background thread in the repo
         val redditLiveData: LiveData<List<Children>> = RedditFetchr().fetchContents()
 
-//        //print stockItems
-//        redditLiveData.observe(
-//            this,
-//            Observer { commentItems ->
-//                Log.d(TAG, "Response received: $commentItems")
-//            })
         stockListViewModel = ViewModelProviders.of(this).get(StockListViewModel::class.java)
+
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        stockListViewModel.StockItemLiveData.observe(
+            viewLifecycleOwner,
+            Observer { stockItems ->
+                Log.d(TAG, "Have stock items from ViewModel $stockItems")
+                // Eventually, update data backing the recycler view
+            })
     }
 
-//    //sets up recycler view which asks adapter to create viewholders and bind data
+//    private class StockHolder(itemTextView: TextView)
+//        : RecyclerView.ViewHolder(itemTextView) {
+//        val bindTitle: (CharSequence) -> Unit = itemTextView::setText
+//    }
+//
+//    private class StockAdapter(private val stockItems: List<Children>)
+//        : RecyclerView.Adapter<StockHolder>() {
+//
+//        override fun onCreateViewHolder(
+//            parent: ViewGroup,
+//            viewType: Int
+//        ): StockHolder {
+//            val textView = TextView(parent.context)
+//            return StockHolder(textView)
+//        }
+//
+//        override fun getItemCount(): Int = stockItems.size
+//        override fun onBindViewHolder(holder: StockHolder, position: Int) {
+//            val stockItem = stockItems[position]
+//            holder.bindTitle(stockItem.title)
+//        }
+//    }
+
+    //    //sets up recycler view which asks adapter to create viewholders and bind data
 //    private lateinit var leaderboardRecyclerView: RecyclerView
 //    private var adapter: StockAdapter? = null
 //    override fun onCreateView(

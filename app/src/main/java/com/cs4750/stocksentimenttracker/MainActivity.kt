@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cs4750.stocksentimenttracker.database.Stock
 
+
 private val TAG = "MainActivity"
 
 private val comments : List<String> = listOf(
@@ -47,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.fragmentContainer, LeaderboardFragment.newInstance())
                 .commit()
         }
-    } // delete this later
+    }// delete this later
+//
 //        refreshButton = findViewById(R.id.refreshBtn)
 //        recyclerView = findViewById(R.id.recyclerview)
 //
@@ -67,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 //        adapter = StockAdapter(topStocks)
 //        recyclerView.adapter = adapter
 //    }
-
+//
 //    private fun countMentions(commentList: List<String>) {
 //        refreshButton.setOnClickListener {
 //            val stockList = stockListViewModel.stockList
