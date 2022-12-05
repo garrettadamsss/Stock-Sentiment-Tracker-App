@@ -13,6 +13,9 @@ interface StockDao {
     @Query("UPDATE stocks SET count = count + 1 WHERE ticker=(:ticker)")
     fun incrementStock(ticker: String)
 
+    @Query("UPDATE stocks SET count = 0")
+    fun resetDatabase()
+
     @Query("SELECT * FROM stocks")
     fun getStocks() : List<Stock>
 

@@ -66,6 +66,7 @@ class LeaderboardFragment : Fragment() {
                 }
             }
         )
+        refresh()
     }
 
     private fun updateUI(topStocks : List<Stock>) {
@@ -77,26 +78,32 @@ class LeaderboardFragment : Fragment() {
         val stockList = stockListViewModel.stockList
         for(comment in commentList) {
             for(stock in stockList) {
-//                if(comment.contains(stock.ticker + ' ')) {  // at the beginning
-//                    stockListViewModel.incrementStock(stock.ticker)
-//                }
-//                else if(comment.contains(' ' + stock.ticker)) {  // at the end
-//                    stockListViewModel.incrementStock(stock.ticker)
-//                }
-                  if(comment.contains(' ' + stock.ticker + ' ')) {  // at the middle
+                if(comment.contains(stock.ticker + ' ')) {  // at the beginning
+                    stockListViewModel.incrementStock(stock.ticker)
+                }
+                else if(comment.contains(' ' + stock.ticker)) {  // at the end
+                    stockListViewModel.incrementStock(stock.ticker)
+                }
+                else if(comment.contains(' ' + stock.ticker + ' ')) {  // at the middle
                     stockListViewModel.incrementStock(stock.ticker)
                   }
-//                else if(comment == stock.ticker) {   // only contains ticker
-//                    stockListViewModel.incrementStock(stock.ticker)
-//                }
+                else if(comment == stock.ticker) {   // only contains ticker
+                    stockListViewModel.incrementStock(stock.ticker)
+                }
             }
         }
     }
 
-    private fun refresh(comments: List<String>) {
+    private fun refresh() {
         refreshButton.setOnClickListener{
-            countMentions(comments)
+            resetDatabase()
+            // vincent: implement a function to fetch new contents here
         }
+    }
+
+    private fun resetDatabase() {
+        stockListViewModel.resetDatabase()
+        Log.d(TAG, "Reset database")
     }
 
 

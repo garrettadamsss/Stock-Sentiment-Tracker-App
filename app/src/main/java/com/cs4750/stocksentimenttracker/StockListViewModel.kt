@@ -13,10 +13,12 @@ class StockListViewModel : ViewModel() {
 
     private val stockRepository = StockRepository.get()
     val stockList = stockRepository.getStocks()
-
     val topStocksLiveData = stockRepository.getTopStocks()
 
     fun incrementStock(ticker: String) {
         stockRepository.incrementStock(ticker)
+    }
+    fun resetDatabase() {
+        stockRepository.resetDatabase()
     }
 }
