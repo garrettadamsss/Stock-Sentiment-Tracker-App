@@ -33,7 +33,32 @@ class RedditFetchr {
                 response: Response<String>
             ) {
                 Log.d(TAG, "Response received")
+<<<<<<< Updated upstream
                 responseLiveData.value = response.body()
+=======
+                //get response of outermost JSON object data
+                val redditResponse: RedditResponse? = response.body()
+                //get list of children
+                val childrenResponse: ChildrenResponse? = redditResponse?.data
+
+                //get list of children from childrenresponse
+                var childrenItems: List<Children> = childrenResponse?.children
+                    ?: mutableListOf()
+                //create a list for dataX model objects
+                val DataXItems: MutableList<DataX> = mutableListOf()
+                //parse children list for datax
+                childrenItems.forEach {
+                    DataXItems.add(it.data)
+                }
+                //parse comments and extract body into Strings
+                val comments: MutableList<String> = mutableListOf()
+                DataXItems.forEach {
+                    comments.add(it.body)
+                }
+                //set live data to list of stock items
+                responseLiveData.value = comments
+                Log.d(TAG, "first comment: "+comments[0])
+>>>>>>> Stashed changes
             }
         })
         return responseLiveData
