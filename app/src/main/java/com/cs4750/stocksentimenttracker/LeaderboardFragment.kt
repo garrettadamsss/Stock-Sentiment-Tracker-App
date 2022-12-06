@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
@@ -107,6 +108,8 @@ class LeaderboardFragment : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         // do whatever
+                        Toast.makeText(context, "clicked item index is $position", Toast.LENGTH_LONG).show()
+                        // stockListViewModel.setContentView()
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
