@@ -6,14 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cs4750.stocksentimenttracker.StockAdapter.RecyclerItemClickListener
 import com.cs4750.stocksentimenttracker.database.Stock
+
 
 private const val TAG = "LeaderboardFragment"
 class LeaderboardFragment : Fragment() {
@@ -31,6 +32,7 @@ class LeaderboardFragment : Fragment() {
         super.onCreate(savedInstanceState)
         //redditLiveData comes from background thread in the repo
         val redditLiveData: LiveData<List<String>> = RedditFetchr().fetchContents()
+
     }
 
     override fun onCreateView(
@@ -43,6 +45,7 @@ class LeaderboardFragment : Fragment() {
         refreshButton = view.findViewById(R.id.refresh_button)
         stockRecyclerView.layoutManager = LinearLayoutManager(context)
         stockRecyclerView.adapter = adapter
+
         return view
     }
 
@@ -66,7 +69,9 @@ class LeaderboardFragment : Fragment() {
                 }
             }
         )
+
         refresh()
+        showInfo()
     }
 
     private fun updateUI(topStocks : List<Stock>) {
@@ -93,6 +98,23 @@ class LeaderboardFragment : Fragment() {
             }
         }
     }
+    private fun showInfo()
+    {
+        stockRecyclerView.addOnItemTouchListener(
+            RecyclerItemClickListener(
+                context,
+                stockRecyclerView,
+                object : RecyclerItemClickListener.OnItemClickListener {
+                    override fun onItemClick(view: View?, position: Int) {
+                        // do whatever
+                    }
+
+                    override fun onLongItemClick(view: View?, position: Int) {
+                        // do whatever
+                    }
+                })
+        )
+    }
 
     private fun refresh() {
         refreshButton.setOnClickListener{
@@ -100,6 +122,7 @@ class LeaderboardFragment : Fragment() {
             // vincent: implement a function to fetch new contents here
         }
     }
+
 
     private fun resetDatabase() {
         stockListViewModel.resetDatabase()
