@@ -7,6 +7,8 @@ import retrofit2.http.GET
 
 //add here to set up and authorize reddit api
 interface RedditApi {
-    @GET("/")
-    fun fetchContents(): Call<String>
+    @GET("/r/wallstreetbets/comments/.json?limit=100")
+    //return redditresponse model object which deserializes the JSON data to a Model Object
+    fun fetchContents(): Call<RedditResponse>
+
 }
