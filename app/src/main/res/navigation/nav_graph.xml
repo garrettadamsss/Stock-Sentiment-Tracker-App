@@ -10,11 +10,11 @@
         android:label="LeaderboardFragment"
         tools:layout="@layout/fragment_leaderboard">
         <action
-            android:id="@+id/show_stockInfoFragment"
-            app:destination="@id/stockInfoFragment" />
+            android:id="@+id/show_stockDetailFragment"
+            app:destination="@id/stockDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/stockInfoFragment"
-        android:name="com.cs4750.stocksentimenttracker.StockInfoFragment"
-        android:label="StockInfoFragment" />
+        android:id="@+id/stockDetailFragment"
+        android:name="com.cs4750.stocksentimenttracker.StockDetailFragment"
+        android:label="StockDetailFragment" />
 </navigation>

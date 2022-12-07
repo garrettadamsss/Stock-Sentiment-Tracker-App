@@ -7,5 +7,14 @@ import androidx.room.PrimaryKey
 data class Stock(
     @PrimaryKey val ticker: String,
     val name: String,
-    var count : Int
+    var count : Int,
+    // Stock Info
+    var buy : Int,
+    var hold : Int,
+    var period : String,
+    var sell : Int,
+    var strongBuy : Int,
+    var strongSell : Int
 )
+
+
