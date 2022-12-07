@@ -142,8 +142,6 @@ class LeaderboardFragment : Fragment() {
         Log.d(TAG, "Reset database")
     }
 
-        Log.d(TAG,"Recommendation trends found.")
-
 
 //    private class StockHolder(itemTextView: TextView)
 //        : RecyclerView.ViewHolder(itemTextView) {

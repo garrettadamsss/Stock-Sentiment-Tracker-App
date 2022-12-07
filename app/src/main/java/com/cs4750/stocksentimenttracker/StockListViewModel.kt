@@ -3,7 +3,6 @@ package com.cs4750.stocksentimenttracker
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.cs4750.stocksentimenttracker.api.FinnhubApi
-import com.cs4750.stocksentimenttracker.database.FinnhubStock
 
 class StockListViewModel : ViewModel() {
 
