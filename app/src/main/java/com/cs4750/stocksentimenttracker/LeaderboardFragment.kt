@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cs4750.stocksentimenttracker.StockAdapter.RecyclerItemClickListener
+import com.cs4750.stocksentimenttracker.api.FinnhubApi
 import com.cs4750.stocksentimenttracker.database.Stock
 
 
@@ -109,7 +110,16 @@ class LeaderboardFragment : Fragment() {
                     override fun onItemClick(view: View?, position: Int) {
                         // do whatever
                         Toast.makeText(context, "clicked item index is $position", Toast.LENGTH_LONG).show()
-                        // stockListViewModel.setContentView()
+                        var obj = FinnhubApi()
+                        var stockList = stockListViewModel.topStocksLiveData.value
+                        if (stockList != null) {
+                            for(item in stockList) {
+                                if (stockList != null) {
+                                    obj.fetchContents(item.ticker)
+                                }
+                            }
+                        }
+
                     }
 
                     override fun onLongItemClick(view: View?, position: Int) {
