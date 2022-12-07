@@ -9,12 +9,12 @@ data class Stock(
     val name: String,
     var count : Int,
     // Stock Info
-    var buy : Int,
-    var hold : Int,
-    var period : String,
-    var sell : Int,
-    var strongBuy : Int,
-    var strongSell : Int
+//    var buy : Int,
+//    var hold : Int,
+//    var period : String,
+//    var sell : Int,
+//    var strongBuy : Int,
+//    var strongSell : Int
 )
 
 
