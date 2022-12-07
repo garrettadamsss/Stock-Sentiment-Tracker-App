@@ -109,15 +109,20 @@ class LeaderboardFragment : Fragment() {
                 object : RecyclerItemClickListener.OnItemClickListener {
                     override fun onItemClick(view: View?, position: Int) {
                         // do whatever
-                        Toast.makeText(context, "clicked item index is $position", Toast.LENGTH_LONG).show()
-                        var obj = FinnhubApi()
+
+                        var api = FinnhubApi()
                         var stockList = stockListViewModel.topStocksLiveData.value
+                        var ticker = stockList?.get(position)?.ticker
+
                         if (stockList != null) {
-                            for(item in stockList) {
-                                if (stockList != null) {
-                                    obj.fetchContents(item.ticker)
-                                }
-                            }
+                            api.fetchContents(stockList.get(position).ticker)
+                            // data = api.getData(stockList.get(position).ticker)
+                            Toast.makeText(context, "For $ticker, ", Toast.LENGTH_LONG).show()
+//                            for(item in stockList) {
+//                                if (stockList != null) {
+//                                    obj.fetchContents(item.ticker)
+//                                }
+//                            }
                         }
 
                     }
@@ -142,6 +147,10 @@ class LeaderboardFragment : Fragment() {
         Log.d(TAG, "Reset database")
     }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 //    private class StockHolder(itemTextView: TextView)
 //        : RecyclerView.ViewHolder(itemTextView) {
