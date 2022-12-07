@@ -110,6 +110,7 @@ class LeaderboardFragment : Fragment() {
                     override fun onItemClick(view: View?, position: Int) {
                         // do whatever
                         Toast.makeText(context, "clicked item index is $position", Toast.LENGTH_LONG).show()
+
                         var obj = FinnhubApi()
                         var stockList = stockListViewModel.topStocksLiveData.value
                         if (stockList != null) {
