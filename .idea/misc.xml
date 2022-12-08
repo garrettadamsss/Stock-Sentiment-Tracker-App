@@ -3,11 +3,27 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/fidel/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_main.xml" value="0.37395833333333334" />
         <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_main.xml" value="0.22509057971014493" />
+<<<<<<< HEAD
         <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_sentiment_tracker.xml" value="0.2164855072463768" />
         <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/fragment_sentiment_tracker.xml" value="0.2164855072463768" />
+=======
+<<<<<<< Updated upstream
+=======
+        <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_sentiment_tracker.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/card_stock.xml" value="0.18478260869565216" />
+        <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/fragment_leaderboard.xml" value="0.1" />
+        <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/fragment_sentiment_tracker.xml" value="0.2164855072463768" />
+        <entry key="..\:/Users/garre/Documents/Projects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/list_item_stock.xml" value="0.5" />
+        <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_main.xml" value="0.1" />
+>>>>>>> Stashed changes
+>>>>>>> a68ee8a142ad16d958948acc27ff1d416e3e51c2
         <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/activity_sentiment_tracker.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/card_stock.xml" value="0.1" />
+        <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/fragment_leaderboard.xml" value="0.2" />
         <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/fragment_sentiment_tracker.xml" value="0.17708333333333334" />
+        <entry key="..\:/Users/vinny/AndroidStudioProjects/Stock-Sentiment-Tracker-App/app/src/main/res/layout/list_item_stock.xml" value="0.1" />
       </map>
     </option>
   </component>
