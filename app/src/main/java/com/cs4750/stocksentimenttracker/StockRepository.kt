@@ -29,6 +29,7 @@ class StockRepository private constructor(context: Context) {
     fun getStocks() : List<Stock> = stockDao.getStocks()
     fun getTopStocks() : LiveData<List<Stock>> = stockDao.getTopStocks()
     fun incrementStock(ticker: String) = stockDao.incrementStock(ticker)
+    fun resetDatabase() = stockDao.resetDatabase()
 
 //    fun getStock(ticker: String) : LiveData<Stock?> = stockDao.getStock(ticker)
 //    fun update(stock: Stock) {

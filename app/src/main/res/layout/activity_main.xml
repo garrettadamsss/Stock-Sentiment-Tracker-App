@@ -3,25 +3,25 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentContainer"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="490dp"
-        android:layout_marginBottom="50dp"
-        tools:itemCount="10"
-        tools:listitem="@layout/card_stock" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerview"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="490dp"-->
+<!--        android:layout_marginBottom="50dp"-->
+<!--        tools:itemCount="10"-->
+<!--        tools:listitem="@layout/card_stock" />-->
 
-    <Button
-        android:id="@+id/refreshBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="refresh" />
+<!--    <Button-->
+<!--        android:id="@+id/refreshBtn"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:text="refresh" />-->
 
 </FrameLayout>
 

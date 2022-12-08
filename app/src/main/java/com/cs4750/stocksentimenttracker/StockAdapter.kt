@@ -20,10 +20,18 @@ class StockAdapter(var topStocks: List<Stock>) : RecyclerView.Adapter<StockAdapt
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val stock = topStocks[position]
-        holder.ticker.text = stock.ticker
-        holder.count.text = stock.count.toString()
-        holder.name.text = stock.name
+        if(position == 0){
+            holder.ticker.text = "Ticker"
+            holder.count.text = "Count"
+            holder.name.text = "Stock Name"
+
+        }else {
+            val stock = topStocks[position-1]
+            holder.ticker.text = stock.ticker
+            holder.count.text = stock.count.toString()
+            holder.name.text = stock.name
+
+        }
     }
 
     override fun getItemCount(): Int {
