@@ -6,7 +6,7 @@ import retrofit2.http.GET
 
 
 interface RedditApi {
-    @GET("/r/wallstreetbets/comments/.json?limit=100")
+    @GET("/r/wallstreetbets/comments/.json?limit=2000")
     //return redditresponse model object which deserializes the JSON data to a Model Object
     fun fetchContents(): Call<RedditResponse>
 
