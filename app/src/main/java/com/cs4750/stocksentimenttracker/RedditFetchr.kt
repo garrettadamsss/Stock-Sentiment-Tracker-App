@@ -63,6 +63,7 @@ class RedditFetchr {
                 }
                 //set live data to list of stock items
                 responseLiveData.value = comments
+                Log.d(TAG, "size " + comments.size.toString())
             }
         })
         return responseLiveData

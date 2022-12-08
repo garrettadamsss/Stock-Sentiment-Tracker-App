@@ -61,6 +61,7 @@ class LeaderboardFragment : Fragment() {
 
     private fun countMentions(commentList: List<String>) {
         val stockList = stockListViewModel.stockList
+        Log.d(TAG, commentList.size.toString());
         for(comment in commentList) {
             for(stock in stockList) {
                 if(comment.contains(stock.ticker + ' ')) {  // at the beginning
@@ -75,6 +76,30 @@ class LeaderboardFragment : Fragment() {
                 else if(comment == stock.ticker) {   // only contains ticker
                     stockListViewModel.incrementStock(stock.ticker)
                 }
+//                else if(comment.contains(stock.name + ' ')) {
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.contains(' ' + stock.name)) {  // at the end
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.contains(' ' + stock.name + ' ')) {  // at the middle
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment == stock.name) {   // only contains ticker
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.uppercase().contains(stock.ticker + ' ')) {  // at the beginning
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.uppercase().contains(' ' + stock.ticker)) {  // at the end
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.uppercase().contains(' ' + stock.ticker + ' ')) {  // at the middle
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
+//                else if(comment.uppercase() == stock.ticker) {   // only contains ticker
+//                    stockListViewModel.incrementStock(stock.ticker)
+//                }
             }
         }
     }
